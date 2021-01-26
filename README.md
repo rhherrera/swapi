@@ -1,7 +1,7 @@
 # swapi
 swapi app and api.
 
-TO RUN THIS APP YOU NEED TO HAVE INSTALLED PIPENV AND NPM.
+TO RUN THIS APP YOU NEED TO INSTALL PIPENV AND NPM.
 
 1. Clone the repository to a local folder.
 2. On a terminal, go to that local folder.
@@ -15,3 +15,9 @@ At this point you should have the API running on the localhost:8000, go to the b
 9. run `npm install`
 10. run `npm start`
 11. A browser should open pointing to the url `http://localhost:3000` there you have the app. Enjoy it :) 
+
+
+Some extra comments:
+1. Inside the file inspector you will find a multi-dropbox for filtering, allowing to select or unselect all.
+2. The load more works propertly with or without filters.
+3. The API support sorting by any field, but the frontend doesn't.

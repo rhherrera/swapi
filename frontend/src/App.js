@@ -125,7 +125,7 @@ class App extends Component {
     return (
       <div className="card p-3">
         <div className="">
-          <button className="btn btn-success" onClick={this.handleSubmit}>Fetch</button>
+          <button className="btn btn-success mb-2" onClick={this.handleSubmit}>Fetch</button>
         </div>
         <ul>
           {this.renderFiles()}
@@ -160,8 +160,9 @@ class App extends Component {
       <main className="content">
         <h1 className="text-white text-uppercase text-center my-4">
           <span>Star wars explorer</span>
-          <button type="button" class="btn btn-primary" onClick={this.getCollections}>Collections</button>
+          <button type="button" class="btn btn-primary pull-right ml-3 mb-2" onClick={this.getCollections}>Collections</button>
         </h1>
+        <hr/>
         <div className="row ">
           <div className=" col-sm-10 mx-auto p-0">
               {this.renderSection()}
