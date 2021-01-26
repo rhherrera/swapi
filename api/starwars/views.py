@@ -27,7 +27,12 @@ class DataSetViewSet(ViewSet):
 
     def list(self, request):
         queryset = FileMetadata.objects.all()
-        usernames = [{'filename': metadata.filename, 'date': metadata.date, 'id': metadata.id} for metadata in FileMetadata.objects.all()]
+        usernames = [
+            {
+                'filename': metadata.filename,
+                'date': metadata.date.strftime('%b %d, %Y, %I:%M %p'),
+                'id': metadata.id} 
+            for metadata in FileMetadata.objects.all()]
         return Response(usernames)
 
     def create(self, request):
@@ -49,14 +54,14 @@ class DataSetViewSet(ViewSet):
                     person.pop('species', None)
                     person.pop('films', None)
                     person.pop('created', None)
-                    breakpoint()
+                    person.pop('url', None)
                     date = parser.isoparse(person.pop('edited'))
                     person['date'] = date.strftime('%Y-%m-%d')
                     if not headers:
                         headers = list(person.keys())
                         writer.writerow(headers)                        
                     writer.writerow(person.values())
-                people = requests.get(people['next']).json() 
+                people = requests.get(people['next']).json()
         filemetadata = FileMetadata(filename=filename, date=now)
         filemetadata.save()
         

@@ -8,6 +8,7 @@ ipdb = "*"
 
 [packages]
 django = "3.1.5"
+django-cors-headers= "==3.7.0"
 djangorestframework = "==3.12.2"
 requests = "2.25.1"
 petl = "==1.7.1"
