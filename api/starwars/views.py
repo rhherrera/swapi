@@ -18,6 +18,9 @@ PLANETS_ENDPOINT = 'https://swapi.dev/api/planets'
 class DataSetViewSet(ViewSet):
 
     def _get_planets(self):
+        """
+        Returns a dictionary that uses as key the url of the planet on the API and as value the name of the planet.
+        """
         planets = requests.get(PLANETS_ENDPOINT).json()
         planets_dict = {planet['url']:planet['name'] for planet in planets["results"]}
         while planets["next"]:
@@ -26,6 +29,9 @@ class DataSetViewSet(ViewSet):
         return planets_dict
 
     def list(self, request):
+        """
+        Returns the list of datasets fetched until now.
+        """
         queryset = FileMetadata.objects.all()
         usernames = [
             {
@@ -68,6 +74,11 @@ class DataSetViewSet(ViewSet):
         return Response({"message": "Data retrieved", "file_name": filename, 'id': filemetadata.id})
 
     def retrieve(self, request, pk=None):
+        """
+        Retrieves the dataset downloaded from swapi related to the sent id.
+
+        Supports: Pagination, sortering and filtering.
+        """
         start_at = int(request.query_params.get('start_at', '0'))
         filemetadata = FileMetadata.objects.get(id=pk)
         table = etl.fromcsv(filemetadata.filename)
